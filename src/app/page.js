@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <main className="flex h-screen flex-col items-center pt-24 px-5 md:px-80 md:pt-0 overflow-hidden">
       {/* Title */}
-      <section className="flex flex-col w-full bg-red-200 gap-3 px-2 ">
+      <section className="flex flex-col w-full gap-3 px-2 ">
         <h1 className="text-xl text-center font-bold">
           List Pengerjaan Service
         </h1>
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Options */}
-      <section className="flex flex-col w-full h-full bg-green-200 py-10 px-2 gap-4 md:px-44">
+      <section className="flex flex-col w-full h-full py-10 px-2 gap-4 md:px-44">
         {/* Persyaratan */}
         <div
           className="flex w-full h-full justify-between items-center  bg-white rounded-2xl p-5 cursor-pointer"
