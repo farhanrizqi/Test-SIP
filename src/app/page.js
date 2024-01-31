@@ -31,26 +31,40 @@ export default function Home() {
   }, []);
 
   const openModalPersyaratan = (serviceId) => {
-    setSelectedService(serviceId);
-    setModalPersyaratanOpen(true);
+    if (serviceId && !modalPersyaratanOpen) {
+      closeModalPerjanjian();
+      closeModalBpkb();
+      setModalPersyaratanOpen(true);
+      setSelectedService(serviceId);
+    }
   };
 
   const closeModalPersyaratan = () => {
     setSelectedService(null);
     setModalPersyaratanOpen(false);
   };
+
   const openModalPerjanjian = (serviceId) => {
-    setSelectedService(serviceId);
-    setModalPerjanjianOpen(true);
+    if (serviceId && !modalPerjanjianOpen) {
+      closeModalPersyaratan();
+      closeModalBpkb();
+      setModalPerjanjianOpen(true);
+      setSelectedService(serviceId);
+    }
   };
 
   const closeModalPerjanjian = () => {
     setSelectedService(null);
     setModalPerjanjianOpen(false);
   };
+
   const openModalBpkb = (serviceId) => {
-    setSelectedService(serviceId);
-    setModalBpkbOpen(true);
+    if (serviceId && !modalBpkbOpen) {
+      closeModalPersyaratan();
+      closeModalPerjanjian();
+      setModalBpkbOpen(true);
+      setSelectedService(serviceId);
+    }
   };
 
   const closeModalBpkb = () => {
@@ -59,7 +73,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center pt-24 px-5">
+    <main className="flex h-screen flex-col items-center pt-24 px-5 md:px-80 md:pt-0 overflow-hidden">
       {/* Title */}
       <section className="flex flex-col w-full bg-red-200 gap-3 px-2 ">
         <h1 className="text-xl text-center font-bold">
@@ -75,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Options */}
-      <section className="flex flex-col w-full h-full bg-green-200 py-10 px-2 gap-4">
+      <section className="flex flex-col w-full h-full bg-green-200 py-10 px-2 gap-4 md:px-44">
         {/* Persyaratan */}
         <div
           className="flex w-full h-full justify-between items-center  bg-white rounded-2xl p-5 cursor-pointer"
@@ -256,7 +270,7 @@ export default function Home() {
         className="cursor-pointer p-4 border-none bg-blue-400 rounded-xl"
         onClick={() => openModalBpkb(3)}
       >
-        <h1 className="text-md font-bold">Submit</h1>
+        <h1 className="text-md font-bold text-white">Submit</h1>
       </button>
 
       {selectedService && (

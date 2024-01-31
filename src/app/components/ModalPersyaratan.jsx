@@ -26,7 +26,7 @@ const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
           const selectedJson = servicesJson.find(
             (json) => json.service_id.id === serviceId
           );
-
+          console.log(selectedJson);
           if (selectedJson) {
             setServiceData(selectedService);
             setJsonContent(selectedJson);
@@ -46,7 +46,7 @@ const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
     <div className={`modal ${isOpen ? "open" : ""}`}>
       {serviceData && jsonContent ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto ">
-          <div className="fixed inset-0 bg-black opacity-50"></div>
+          {/* <div className="fixed inset-0 bg-black opacity-50"></div> */}
           <div className="bg-white p-6 top-1/2 h-1/2 rounded-lg z-50">
             <span
               className="flex justify-end items-center text-xl cursor-pointer z-50"
@@ -54,12 +54,12 @@ const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
             >
               &times;
             </span>
-            <div>
+            <div className="flex flex-col justify-center">
               <h1 className="text-center font-bold">
-                {serviceData.service_name}
+                {jsonContent.service_id.service_name}
               </h1>
               <h2 className="text-center ">
-                {jsonContent.json.find((item) => item.id === 23)?.description}
+                {jsonContent.json.description && jsonContent.json.description}
               </h2>
 
               <h2 className="text-sm font-bold text-red-500">
@@ -67,13 +67,14 @@ const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
               </h2>
             </div>
             <div className="bg-gray-100 p-5 rounded-xl">
-              {/* Render konten modal sesuai dengan data yang diambil dari services_json */}
               <div key={jsonContent.id}>
                 <h1 className="text-center text-sm font-bold">
                   {jsonContent.service_id.service_name}
                 </h1>
                 <h1 className="text-center text-sm">
-                  {jsonContent.json.description}
+                  {jsonContent.json.find((item) => item.id === 23)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 23).description}
                 </h1>
                 {/* Sesuaikan dengan properti yang ada di data layanan Anda */}
               </div>
