@@ -76,7 +76,6 @@ const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
                     .description &&
                     jsonContent.json.find((item) => item.id === 23).description}
                 </h1>
-                {/* Sesuaikan dengan properti yang ada di data layanan Anda */}
               </div>
             </div>
           </div>

@@ -59,7 +59,6 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
               </h2>
             </div>
             <div className="bg-gray-100 p-5 rounded-xl">
-              {/* Render konten modal sesuai dengan data yang diambil dari services_json */}
               <div key={jsonContent.id}>
                 <h1 className="text-center text-sm font-bold">
                   {jsonContent.service_id.service_name}
@@ -67,7 +66,6 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
                 <h1 className="text-center text-sm">
                   {jsonContent.json.description}
                 </h1>
-                {/* Sesuaikan dengan properti yang ada di data layanan Anda */}
               </div>
             </div>
           </div>
