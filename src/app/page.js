@@ -1,4 +1,63 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import ModalPersyaratan from "./components/ModalPersyaratan";
+import ModalPerjanjian from "./components/ModalPerjanjian";
+import ModalBpkb from "./components/ModalBpkb";
+import axios from "axios";
+
 export default function Home() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
+  const [modalPersyaratanOpen, setModalPersyaratanOpen] = useState(false);
+  const [modalPerjanjianOpen, setModalPerjanjianOpen] = useState(false);
+  const [modalBpkbOpen, setModalBpkbOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://wiremock.solusione.id/wiremock/test/services/MBFIN202111080000016"
+        );
+
+        setData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const openModalPersyaratan = (serviceId) => {
+    setSelectedService(serviceId);
+    setModalPersyaratanOpen(true);
+  };
+
+  const closeModalPersyaratan = () => {
+    setSelectedService(null);
+    setModalPersyaratanOpen(false);
+  };
+  const openModalPerjanjian = (serviceId) => {
+    setSelectedService(serviceId);
+    setModalPerjanjianOpen(true);
+  };
+
+  const closeModalPerjanjian = () => {
+    setSelectedService(null);
+    setModalPerjanjianOpen(false);
+  };
+  const openModalBpkb = (serviceId) => {
+    setSelectedService(serviceId);
+    setModalBpkbOpen(true);
+  };
+
+  const closeModalBpkb = () => {
+    setSelectedService(null);
+    setModalBpkbOpen(false);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-5">
       {/* Title */}
@@ -18,7 +77,10 @@ export default function Home() {
       {/* Options */}
       <section className="flex flex-col w-full h-full bg-green-200 py-10 px-2 gap-4">
         {/* Persyaratan */}
-        <div className="flex w-full h-full justify-between items-center  bg-white rounded-2xl p-5">
+        <div
+          className="flex w-full h-full justify-between items-center  bg-white rounded-2xl p-5 cursor-pointer"
+          onClick={() => openModalPersyaratan(1)}
+        >
           <div className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +175,10 @@ export default function Home() {
         </div>
 
         {/* Perjanjian */}
-        <div className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5">
+        <div
+          className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5"
+          onClick={() => openModalPerjanjian(2)}
+        >
           <div className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +213,10 @@ export default function Home() {
         </div>
 
         {/* Submission */}
-        <div className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5">
+        <div
+          className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5"
+          onClick={() => openModalBpkb(3)}
+        >
           <div className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -183,6 +251,38 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <button
+        className="cursor-pointer p-4 border-none bg-blue-400 rounded-xl"
+        onClick={() => openModalBpkb(3)}
+      >
+        <h1 className="text-md font-bold">Submit</h1>
+      </button>
+
+      {selectedService && (
+        <ModalPersyaratan
+          isOpen={modalPersyaratanOpen}
+          closeModal={closeModalPersyaratan}
+          serviceId={selectedService}
+          // ... (Tambahkan properti lain sesuai kebutuhan)
+        />
+      )}
+      {selectedService && (
+        <ModalPerjanjian
+          isOpen={modalPerjanjianOpen}
+          closeModal={closeModalPerjanjian}
+          serviceId={selectedService}
+          // ... (Tambahkan properti lain sesuai kebutuhan)
+        />
+      )}
+      {selectedService && (
+        <ModalBpkb
+          isOpen={modalBpkbOpen}
+          closeModal={closeModalBpkb}
+          serviceId={selectedService}
+          // ... (Tambahkan properti lain sesuai kebutuhan)
+        />
+      )}
     </main>
   );
 }
