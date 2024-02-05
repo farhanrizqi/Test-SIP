@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
+const ModalPersyaratan = ({ isOpen, closeModal, serviceId }) => {
   const [serviceData, setServiceData] = useState(null);
   const [jsonContent, setJsonContent] = useState(null);
 
@@ -20,11 +20,13 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
         if (selectedService) {
           // Jika service ditemukan, panggil data dari services_json
           const servicesJson = response.data.data.services_json;
+          console.log(response.data.data.services_json);
           console.log(`Data Json: `, servicesJson);
+          console.log("ini services id: ", serviceId);
           const selectedJson = servicesJson.find(
             (json) => json.service_id.id === serviceId
           );
-
+          console.log(selectedJson);
           if (selectedJson) {
             setServiceData(selectedService);
             setJsonContent(selectedJson);
@@ -45,16 +47,22 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
       {serviceData && jsonContent ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto ">
           <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="bg-white p-6 top-1/2 h-1/2 rounded-lg z-50">
+          <div className="bg-white p-6 top-1/2 h-1/2 rounded-lg z-50 mx-2">
             <span
               className="flex justify-end items-center text-xl cursor-pointer z-50"
               onClick={closeModal}
             >
               &times;
             </span>
-            <div>
-              <h1>{serviceData.service_name}</h1>
-              <h2 className="text-sm font-bold text-red-500">
+            <div className="flex flex-col justify-center">
+              <h1 className="text-center font-bold">
+                {jsonContent.service_id.service_name}
+              </h1>
+              <h2 className="text-center ">
+                {jsonContent.json.description && jsonContent.json.description}
+              </h2>
+
+              <h2 className="text-center text-sm font-bold text-red-500">
                 * Mandatory (harus, diisi)
               </h2>
             </div>
@@ -64,7 +72,9 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
                   {jsonContent.service_id.service_name}
                 </h1>
                 <h1 className="text-center text-sm">
-                  {jsonContent.json.description}
+                  {jsonContent.json.find((item) => item.id === 23)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 23).description}
                 </h1>
               </div>
             </div>
@@ -77,4 +87,4 @@ const ModalBpkb = ({ isOpen, closeModal, serviceId }) => {
   );
 };
 
-export default ModalBpkb;
+export default ModalPersyaratan;

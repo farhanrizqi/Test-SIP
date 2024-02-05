@@ -1,17 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ModalPersyaratan from "./components/ModalPersyaratan";
-import ModalPerjanjian from "./components/ModalPerjanjian";
-import ModalBpkb from "./components/ModalBpkb";
+import Modal from "./components/Modal";
+import PersyaratanContent from "./components/Modal";
+import PerjanjianContent from "./components/Modal";
+import BpkbContent from "./components/Modal";
 import axios from "axios";
 
 export default function Home() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
-  const [modalPersyaratanOpen, setModalPersyaratanOpen] = useState(false);
-  const [modalPerjanjianOpen, setModalPerjanjianOpen] = useState(false);
-  const [modalBpkbOpen, setModalBpkbOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,50 +29,20 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const openModalPersyaratan = (serviceId) => {
-    if (serviceId && !modalPersyaratanOpen) {
-      closeModalPerjanjian();
-      closeModalBpkb();
-      setModalPersyaratanOpen(true);
+  const openModal = (serviceId) => {
+    if (serviceId && !modalOpen) {
+      setModalOpen(true);
       setSelectedService(serviceId);
     }
   };
 
-  const closeModalPersyaratan = () => {
+  const closeModal = () => {
     setSelectedService(null);
-    setModalPersyaratanOpen(false);
-  };
-
-  const openModalPerjanjian = (serviceId) => {
-    if (serviceId && !modalPerjanjianOpen) {
-      closeModalPersyaratan();
-      closeModalBpkb();
-      setModalPerjanjianOpen(true);
-      setSelectedService(serviceId);
-    }
-  };
-
-  const closeModalPerjanjian = () => {
-    setSelectedService(null);
-    setModalPerjanjianOpen(false);
-  };
-
-  const openModalBpkb = (serviceId) => {
-    if (serviceId && !modalBpkbOpen) {
-      closeModalPersyaratan();
-      closeModalPerjanjian();
-      setModalBpkbOpen(true);
-      setSelectedService(serviceId);
-    }
-  };
-
-  const closeModalBpkb = () => {
-    setSelectedService(null);
-    setModalBpkbOpen(false);
+    setModalOpen(false);
   };
 
   return (
-    <main className="flex h-screen flex-col items-center pt-24 px-5 md:px-80 md:pt-0 overflow-hidden">
+    <main className="flex h-screen flex-col items-center py-24 px-5 md:px-80 md:pt-0 overflow-hidden">
       {/* Title */}
       <section className="flex flex-col w-full gap-3 px-2 ">
         <h1 className="text-xl text-center font-bold">
@@ -93,7 +62,7 @@ export default function Home() {
         {/* Persyaratan */}
         <div
           className="flex w-full h-full justify-between items-center  bg-white rounded-2xl p-5 cursor-pointer"
-          onClick={() => openModalPersyaratan(1)}
+          onClick={() => openModal(1)}
         >
           <div className="flex items-center gap-2">
             <svg
@@ -191,7 +160,7 @@ export default function Home() {
         {/* Perjanjian */}
         <div
           className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5"
-          onClick={() => openModalPerjanjian(2)}
+          onClick={() => openModal(2)}
         >
           <div className="flex items-center gap-2">
             <svg
@@ -229,7 +198,7 @@ export default function Home() {
         {/* Submission */}
         <div
           className="flex w-full h-full justify-between items-center bg-white rounded-2xl p-5"
-          onClick={() => openModalBpkb(3)}
+          onClick={() => openModal(3)}
         >
           <div className="flex items-center gap-2">
             <svg
@@ -266,36 +235,23 @@ export default function Home() {
         </div>
       </section>
 
-      <button
+      <a
         className="cursor-pointer p-4 border-none bg-blue-400 rounded-xl"
-        onClick={() => openModalBpkb(3)}
+        onClick={() => openModal(3)}
       >
         <h1 className="text-md font-bold text-white">Submit</h1>
-      </button>
+      </a>
 
-      {selectedService && (
-        <ModalPersyaratan
-          isOpen={modalPersyaratanOpen}
-          closeModal={closeModalPersyaratan}
+      {selectedService && modalOpen && (
+        <Modal
+          isOpen={modalOpen}
+          closeModal={closeModal}
           serviceId={selectedService}
-          // ... (Tambahkan properti lain sesuai kebutuhan)
-        />
-      )}
-      {selectedService && (
-        <ModalPerjanjian
-          isOpen={modalPerjanjianOpen}
-          closeModal={closeModalPerjanjian}
-          serviceId={selectedService}
-          // ... (Tambahkan properti lain sesuai kebutuhan)
-        />
-      )}
-      {selectedService && (
-        <ModalBpkb
-          isOpen={modalBpkbOpen}
-          closeModal={closeModalBpkb}
-          serviceId={selectedService}
-          // ... (Tambahkan properti lain sesuai kebutuhan)
-        />
+        >
+          {selectedService === 1 && <PersyaratanContent />}
+          {selectedService === 2 && <PerjanjianContent />}
+          {selectedService === 3 && <BpkbContent />}
+        </Modal>
       )}
     </main>
   );
