@@ -42,6 +42,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 2).description &&
                   jsonContent.json.find((item) => item.id === 2).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -58,6 +59,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 3).description &&
                   jsonContent.json.find((item) => item.id === 3).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -74,6 +76,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 4).description &&
                   jsonContent.json.find((item) => item.id === 4).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -90,6 +93,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 5).description &&
                   jsonContent.json.find((item) => item.id === 5).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -106,6 +110,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 6).description &&
                   jsonContent.json.find((item) => item.id === 6).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -122,6 +127,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 7).description &&
                   jsonContent.json.find((item) => item.id === 7).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -138,6 +144,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 8).description &&
                   jsonContent.json.find((item) => item.id === 8).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -154,6 +161,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
               <h1 className="text-xs font-medium ps-2">
                 {jsonContent.json.find((item) => item.id === 9).description &&
                   jsonContent.json.find((item) => item.id === 9).description}
+                <span className="text-red-500">*</span>
               </h1>
             </div>
           </label>
@@ -163,7 +171,7 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
             {jsonContent.json.find((item) => item.id === 10).description &&
               jsonContent.json.find((item) => item.id === 10).description}
           </h1>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col w-full gap-2">
             <label>
               <div className="flex  items-start ">
                 <input
@@ -1377,18 +1385,183 @@ const PersyaratanContent = ({ jsonContent, closeModal }) => {
 };
 
 // Komponen Upload
-const BpkbContent = ({ jsonContent, closeModal }) => (
-  <div>
-    <h2>BPKB Content</h2>
-    <h2 className="text-center ">
-      {jsonContent.json.find((item) => item.id === 23).description &&
-        jsonContent.json.find((item) => item.id === 23).description}
-    </h2>
+const BpkbContent = ({ jsonContent, closeModal }) => {
+  const [selectedOption, setSelectedOption] = React.useState("");
 
-    <button onClick={closeModal}>Submit</button>
-  </div>
-);
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
+  const handleSaveDraft = () => {
+    // Tambahkan logika penyimpanan draft di sini
+    console.log("Draft saved!");
+  };
+  return (
+    <div className="flex flex-col justify-center p-5 gap-5">
+      <div>
+        <h1 className="text-center font-bold text-lg">
+          {jsonContent.service_id.service_name}
+        </h1>
+        <h2 className="text-center text-sm font-bold text-red-500">
+          * Mandatory (harus, diisi)
+        </h2>
+      </div>
+      <div className="flex flex-col justify-center bg-white rounded-xl py-5 px-2">
+        <div className="flex flex-col gap-2">
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option1"
+                checked={selectedOption === "option1"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 16).description &&
+                  jsonContent.json.find((item) => item.id === 16).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option2"
+                checked={selectedOption === "option2"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 17).description &&
+                  jsonContent.json.find((item) => item.id === 17).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option3"
+                checked={selectedOption === "option3"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 18).description &&
+                  jsonContent.json.find((item) => item.id === 18).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option4"
+                checked={selectedOption === "option4"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 19).description &&
+                  jsonContent.json.find((item) => item.id === 19).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option5"
+                checked={selectedOption === "option5"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 20).description &&
+                  jsonContent.json.find((item) => item.id === 20).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option6"
+                checked={selectedOption === "option6"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 7).description &&
+                  jsonContent.json.find((item) => item.id === 7).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option7"
+                checked={selectedOption === "option7"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 8).description &&
+                  jsonContent.json.find((item) => item.id === 8).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option8"
+                checked={selectedOption === "option8"}
+                onChange={handleOptionChange}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 9).description &&
+                  jsonContent.json.find((item) => item.id === 9).description}
+                <span className="text-red-500">*</span>
+              </h1>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="w-20% py-2 px-5 mr-2 cursor-pointer rounded-lg bg-white text-black border"
+          onClick={handleSaveDraft}
+        >
+          Save Draft
+        </button>
+        <button
+          className="w-20% py-2 px-5 cursor-pointer rounded-lg bg-blue-500 text-white"
+          onClick={closeModal}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+};
 const Modal = ({ isOpen, closeModal, serviceId }) => {
   const [serviceData, setServiceData] = useState(null);
   const [jsonContent, setJsonContent] = useState(null);
