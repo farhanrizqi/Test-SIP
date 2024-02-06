@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// Komponen Radio
 const PerjanjianContent = ({ jsonContent, closeModal }) => {
   const [selectedOption1, setSelectedOption1] = React.useState("");
   const [selectedOption2, setSelectedOption2] = React.useState("");
@@ -260,7 +259,6 @@ const PerjanjianContent = ({ jsonContent, closeModal }) => {
   );
 };
 
-// Komponen Upload
 const PersyaratanContent = ({ jsonContent, closeModal }) => {
   const [debiturImage, setDebiturImage] = useState(null);
   const [pasanganImage, setPasanganImage] = useState(null);
@@ -1384,7 +1382,6 @@ const PersyaratanContent = ({ jsonContent, closeModal }) => {
   );
 };
 
-// Komponen Upload
 const BpkbContent = ({ jsonContent, closeModal }) => {
   const [selectedOption, setSelectedOption] = React.useState("");
 
@@ -1580,7 +1577,6 @@ const Modal = ({ isOpen, closeModal, serviceId }) => {
           services && services.find((service) => service.id === serviceId);
 
         if (selectedService) {
-          // Jika service ditemukan, panggil data dari services_json
           const servicesJson = response.data.data.services_json;
           console.log(response.data.data.services_json);
           console.log(`Data Json: `, servicesJson);
@@ -1607,7 +1603,7 @@ const Modal = ({ isOpen, closeModal, serviceId }) => {
 
   const renderContent = () => {
     if (loading) {
-      return <p>Loading...</p>; // Display a loading indicator while data is being fetched
+      return <p>Loading...</p>;
     }
 
     if (jsonContent && jsonContent.service_id) {
@@ -1634,7 +1630,6 @@ const Modal = ({ isOpen, closeModal, serviceId }) => {
           return null;
       }
     } else {
-      // Handle loading state or other conditions
       return <p>Loading...</p>;
     }
   };
