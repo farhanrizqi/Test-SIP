@@ -2,15 +2,255 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // Komponen Radio
-const PerjanjianContent = ({ jsonContent, closeModal }) => (
-  <div>
-    <h2>Perjanjian Content</h2>
-    <h2 className="text-center ">
-      {jsonContent.json.description && jsonContent.json.description}
-    </h2>
-    <button onClick={closeModal}>Submit</button>
-  </div>
-);
+const PerjanjianContent = ({ jsonContent, closeModal }) => {
+  const [selectedOption1, setSelectedOption1] = React.useState("");
+  const [selectedOption2, setSelectedOption2] = React.useState("");
+
+  const handleOptionChange1 = (event) => {
+    setSelectedOption1(event.target.value);
+  };
+
+  const handleOptionChange2 = (event) => {
+    setSelectedOption2(event.target.value);
+  };
+
+  const handleSaveDraft = () => {
+    // Tambahkan logika penyimpanan draft di sini
+    console.log("Draft saved!");
+  };
+  return (
+    <div className="flex flex-col justify-center p-5 gap-5">
+      <div>
+        <h1 className="text-center font-bold text-lg">
+          {jsonContent.service_id.service_name}
+        </h1>
+        <h2 className="text-center text-sm font-bold text-red-500">
+          * Mandatory (harus, diisi)
+        </h2>
+      </div>
+      <div className="flex flex-col justify-center bg-white rounded-xl py-5 px-2">
+        <div className="flex flex-col gap-2">
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option1"
+                checked={selectedOption1 === "option1"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 2).description &&
+                  jsonContent.json.find((item) => item.id === 2).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option2"
+                checked={selectedOption1 === "option2"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 3).description &&
+                  jsonContent.json.find((item) => item.id === 3).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option3"
+                checked={selectedOption1 === "option3"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 4).description &&
+                  jsonContent.json.find((item) => item.id === 4).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option4"
+                checked={selectedOption1 === "option4"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 5).description &&
+                  jsonContent.json.find((item) => item.id === 5).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option5"
+                checked={selectedOption1 === "option5"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 6).description &&
+                  jsonContent.json.find((item) => item.id === 6).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option6"
+                checked={selectedOption1 === "option6"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 7).description &&
+                  jsonContent.json.find((item) => item.id === 7).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option7"
+                checked={selectedOption1 === "option7"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 8).description &&
+                  jsonContent.json.find((item) => item.id === 8).description}
+              </h1>
+            </div>
+          </label>
+
+          <label>
+            <div className="flex  items-start ">
+              <input
+                className="text-justify"
+                type="radio"
+                value="option8"
+                checked={selectedOption1 === "option8"}
+                onChange={handleOptionChange1}
+              />
+              <h1 className="text-xs font-medium ps-2">
+                {jsonContent.json.find((item) => item.id === 9).description &&
+                  jsonContent.json.find((item) => item.id === 9).description}
+              </h1>
+            </div>
+          </label>
+        </div>
+        <div className="flex flex-col justify-center items-center ">
+          <h1 className="text-lg font-bold py-5">
+            {jsonContent.json.find((item) => item.id === 10).description &&
+              jsonContent.json.find((item) => item.id === 10).description}
+          </h1>
+          <div className="flex flex-col gap-2">
+            <label>
+              <div className="flex  items-start ">
+                <input
+                  className="text-justify"
+                  type="radio"
+                  value="option11"
+                  checked={selectedOption2 === "option11"}
+                  onChange={handleOptionChange2}
+                />
+                <h1 className="text-xs font-medium ps-2">
+                  {jsonContent.json.find((item) => item.id === 11)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 11).description}
+                </h1>
+              </div>
+            </label>
+
+            <label>
+              <div className="flex  items-start ">
+                <input
+                  className="text-justify"
+                  type="radio"
+                  value="option12"
+                  checked={selectedOption2 === "option12"}
+                  onChange={handleOptionChange2}
+                />
+                <h1 className="text-xs font-medium ps-2">
+                  {jsonContent.json.find((item) => item.id === 12)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 12).description}
+                </h1>
+              </div>
+            </label>
+
+            <label>
+              <div className="flex  items-start ">
+                <input
+                  className="text-justify"
+                  type="radio"
+                  value="option13"
+                  checked={selectedOption2 === "option13"}
+                  onChange={handleOptionChange2}
+                />
+                <h1 className="text-xs font-medium ps-2">
+                  {jsonContent.json.find((item) => item.id === 13)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 13).description}
+                </h1>
+              </div>
+            </label>
+
+            <label>
+              <div className="flex  items-start ">
+                <input
+                  className="text-justify"
+                  type="radio"
+                  value="option14"
+                  checked={selectedOption2 === "option14"}
+                  onChange={handleOptionChange2}
+                />
+                <h1 className="text-xs font-medium ps-2">
+                  {jsonContent.json.find((item) => item.id === 14)
+                    .description &&
+                    jsonContent.json.find((item) => item.id === 14).description}
+                </h1>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="w-20% py-2 px-5 mr-2 cursor-pointer rounded-lg bg-white text-black border"
+          onClick={handleSaveDraft}
+        >
+          Save Draft
+        </button>
+        <button
+          className="w-20% py-2 px-5 cursor-pointer rounded-lg bg-blue-500 text-white"
+          onClick={closeModal}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+};
 
 // Komponen Upload
 const PersyaratanContent = ({ jsonContent, closeModal }) => {
@@ -1175,7 +1415,7 @@ const Modal = ({ isOpen, closeModal, serviceId }) => {
           const selectedJson = servicesJson.find(
             (json) => json.service_id.id === serviceId
           );
-          console.log(selectedJson);
+          console.log("isi json service: ", selectedJson);
           if (selectedJson) {
             setServiceData(selectedService);
             setJsonContent(selectedJson);
@@ -1230,14 +1470,15 @@ const Modal = ({ isOpen, closeModal, serviceId }) => {
     <div className={`modal ${isOpen ? "open" : ""}`}>
       {serviceData && jsonContent ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="h-[90%] bg-blue-200 p-6 rounded-lg z-50 mx-4 my-4 overflow-y-auto">
-            <span
-              className="flex justify-end items-center text-xl cursor-pointer z-50"
+          <div className="fixed inset-0 bg-black opacity-50">
+            <h1
+              className="flex justify-end items-center text-white p-2 text-5xl cursor-pointer z-50"
               onClick={closeModal}
             >
               &times;
-            </span>
+            </h1>
+          </div>
+          <div className="h-[90%] w-full bg-blue-200 p-6 rounded-lg z-50 m-4 overflow-y-auto md:w-2/3">
             <div className="flex flex-col justify-center">
               {renderContent()}
             </div>
